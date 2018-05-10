@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import {
   Task,
+  MoveableTask,
   TaskService
 } from '../../task.barrel';
 import {
@@ -20,6 +21,7 @@ export class TaskListItemComponent implements OnInit {
   @Input() public task: Task;
   @Output() public onError = new EventEmitter();
   @Output() public onDelete = new EventEmitter<Task>();
+  @Output() public onMoved = new EventEmitter<MoveableTask>();
 
   public constructor(private _taskService: TaskService) {
     //
@@ -39,6 +41,14 @@ export class TaskListItemComponent implements OnInit {
         finally: () => this.loading = false
       }
     )
+  }
+
+  // ÖZ 2018.05.04.
+  public move(task: Task, offset1: number) {
+    const moveableTask: MoveableTask = new MoveableTask();
+    moveableTask.offset = offset1;
+    moveableTask.task = task;
+    this.onMoved.emit(moveableTask);
   }
 
   public deleteTask(task: Task) {

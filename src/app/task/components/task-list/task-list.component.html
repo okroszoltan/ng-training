@@ -8,6 +8,7 @@
       [task]="task"
       [disabled]="loading"
       (onError)="loadTasks()"
+      (onMoved)="moveTasks($event)"
       (onDelete)="removeTask($event)"
     ></app-task-list-item>
   </li>

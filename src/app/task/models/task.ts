@@ -7,3 +7,8 @@ export class Task {
     public created_at: string;
     public updated_at: string;
 }
+
+export class MoveableTask {
+    public task: Task;
+    public offset: number;
+}
