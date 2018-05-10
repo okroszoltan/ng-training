@@ -74,10 +74,10 @@ export class TaskListComponent implements OnInit {
   }
 
   public moveTasks(moveableTask: MoveableTask) {
-    if (moveableTask.task.position < 0) {
+    if (moveableTask.task.position + moveableTask.offset < 0) {
       alert('Feljebb nem mehet!');
       this.loadTasks();
-    } else if (moveableTask.task.position >= this.tasks.length) {
+    } else if (moveableTask.task.position + moveableTask.offset >= this.tasks.length) {
       alert('Lejjebb nem mehet!');
       this.loadTasks();
     }
